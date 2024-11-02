@@ -214,6 +214,12 @@ function EspObject:Update()
 	self.onScreen = onScreen;
 	self.distance = depth;
 
+	-- Check if the player is more than 300 studs away
+	if depth > 300 then
+		self.enabled = false; -- Disable ESP for players too far away
+		return;
+	end
+
 	if interface.sharedSettings.limitDistance and depth > interface.sharedSettings.maxDistance then
 		self.onScreen = false;
 	end
